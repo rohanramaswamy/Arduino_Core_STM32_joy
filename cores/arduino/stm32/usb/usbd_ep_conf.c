@@ -66,6 +66,25 @@ const ep_desc_t ep_def[] = {
 };
 #endif /* USBD_USE_HID_COMPOSITE */
 
+#ifdef USBD_USE_HID_COMPOSITE_JOYSTICK
+const ep_desc_t ep_def[] = {
+#if !defined (USB)
+#ifdef USE_USB_HS
+  {0x00,                   USB_HS_MAX_PACKET_SIZE},
+  {0x80,                   USB_HS_MAX_PACKET_SIZE},
+#else
+  {0x00,                   USB_FS_MAX_PACKET_SIZE},
+  {0x80,                   USB_FS_MAX_PACKET_SIZE},
+#endif
+  {HID_JOYSTICK_EPIN_ADDR,    HID_JOYSTICK_EPIN_SIZE},
+#else
+  {0x00,                   PMA_EP0_OUT_ADDR,     PCD_SNG_BUF},
+  {0x80,                   PMA_EP0_IN_ADDR,      PCD_SNG_BUF},
+  {HID_JOYSTICK_EPIN_ADDR,    HID_JOYSTICK_EPIN_SIZE,    PCD_SNG_BUF},
+#endif
+};
+#endif /* USBD_USE_HID_COMPOSITE_JOYSTICK */
+
 #endif /* HAL_PCD_MODULE_ENABLED && USBCON */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
 

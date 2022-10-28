@@ -61,6 +61,15 @@ typedef struct {
   #define DEV_NUM_EP                    0x03U   /* Device Endpoints number including EP0 */
 #endif /* USBD_USE_HID_COMPOSITE */
 
+/* HID composite Joystick Endpoints Configurations */
+#ifdef USBD_USE_HID_COMPOSITE_JOYSTICK
+  #define HID_JOYSTICK_EPIN_ADDR        0x81U
+
+  #define HID_JOYSTICK_EPIN_SIZE        0x40U
+
+  #define DEV_NUM_EP                    0x02U   /* Device Endpoints number including EP0 */
+#endif /* USBD_USE_HID_COMPOSITE_JOYSTICK */
+
 /* Require DEV_NUM_EP to be defined */
 #if defined (USB)
 /* Size in words, byte size divided by 2 */
